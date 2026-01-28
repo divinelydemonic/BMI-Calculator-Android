@@ -135,6 +135,7 @@ fun BMICircle(bmi: Float, modifier: Modifier) {
     }
 }
 
+
 fun bmiColor(bmi: Float): Color =
     when {
         bmi < 18.5 -> Color(0xFFFFC857)
