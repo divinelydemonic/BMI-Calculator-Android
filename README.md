@@ -113,6 +113,8 @@ Screens included in this repository demonstrate:
     <img src="snapshots/8.png" width="250">
     <img src="snapshots/9.png" width="250">
     <img src="snapshots/10.png" width="250">
+    <img src="snapshots/13-a.png" width="250">
+    <img src="snapshots/13-b.png" width="250">
   </li>
 </ul>
 
