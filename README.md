@@ -76,8 +76,6 @@ A modern <b>BMI (Body Mass Index) Calculator</b> Android application built using
 Screens included in this repository demonstrate:
 </p>
 
-<h2>📱 Screenshots</h2>
-
 <ul>
   <li>
     <b>Male – Healthy BMI</b><br>
