@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,7 +44,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import kr.android.bmicalculator.ui.theme.AccentBlue
@@ -126,8 +130,16 @@ fun BMICalculator(modifier: Modifier) {
         }
     }
 
+    val focusManager = LocalFocusManager.current
+
     Column(
-        modifier = modifier.padding(top = 16.dp),
+        modifier = modifier
+            .pointerInput(Unit) {
+                detectTapGestures {
+                    focusManager.clearFocus()
+                }
+            }
+            .padding(top = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -236,7 +248,8 @@ fun BMICalculator(modifier: Modifier) {
                 },
                 modifier = Modifier.width(300.dp),
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Decimal
+                    keyboardType = KeyboardType.Decimal,
+                    imeAction = ImeAction.Next
                 ),
                 placeholder = {
                     Text("Enter Height", color = if (heightError) ErrorText else HintText)
@@ -279,7 +292,8 @@ fun BMICalculator(modifier: Modifier) {
                 },
                 modifier = Modifier.width(300.dp),
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Decimal
+                    keyboardType = KeyboardType.Decimal,
+                    imeAction = ImeAction.Done
                 ),
                 placeholder = {
                     Text("Enter Weight", color = if (weightError) ErrorText else HintText)
@@ -303,7 +317,10 @@ fun BMICalculator(modifier: Modifier) {
             Spacer(Modifier.height(32.dp))
 
             Button(
+
                 onClick = {
+
+                    focusManager.clearFocus()
 
                     val errorMessage = when {
                         heightValue == null || weightValue == null ->
