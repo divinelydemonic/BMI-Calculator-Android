@@ -125,7 +125,6 @@ fun BMICalculator(modifier: Modifier) {
     // 🔴 ADD: trigger animation when result appears
     LaunchedEffect(bmiCalculated) {
         if (bmiCalculated != null) {
-            displayBmi = 0f
             displayBmi = bmiCalculated!!
         }
     }
@@ -340,7 +339,7 @@ fun BMICalculator(modifier: Modifier) {
 
                     val bmi = bmiLogic(heightValue!!, weightValue!!, isMetric)
 
-                    displayBmi = 0f
+                    bmiCalculated = null
                     bmiCalculated = bmi
                     lastBmi = bmi
                 },
